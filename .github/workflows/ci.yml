@@ -1,0 +1,20 @@
+﻿name: ASDD CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check HTML file exists
+        run: test -f index.html
+
+      - name: Validate HTML content
+        run: grep -q "<h1>My Sample Web Application</h1>" index.html
